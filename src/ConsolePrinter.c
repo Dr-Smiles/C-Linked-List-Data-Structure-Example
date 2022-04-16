@@ -1,5 +1,6 @@
 #include "Header.h"
 
+// Konsol imlecinin konumunu ayarlar.
 void gotoxy(int x, int y)
 {
 	COORD c;
@@ -8,6 +9,7 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
+// Ciktilar icin kenarlari cizdirir.
 void printBorders(int satir, int sutun){
     int x,y;
     wchar_t star = 0x2605;
@@ -21,6 +23,8 @@ void printBorders(int satir, int sutun){
     }
 }
 
+// Ciktilar icin kenarlari cizdirir.
+// Icinde bir alt cizgi bulunduran versiyon.
 void printBordersWith2(int satir, int sutun, int secondY){
     int x,y;
     for(y = 0; y<sutun; y++){
@@ -33,6 +37,7 @@ void printBordersWith2(int satir, int sutun, int secondY){
     }
 }
 
+// Oyun ciktilarini ekrana yazdirir.
 void printGameScreen(int tur, int dice,char highestName[128], double highestMoney, double *masa){
     system ("cls"); 
     printBordersWith2(45, 15, 5);
@@ -49,6 +54,7 @@ void printGameScreen(int tur, int dice,char highestName[128], double highestMone
     gotoxy(5,16);
 }
 
+// Oyun sonu ekrani.
 void printEndOfGameScreen(int tur, double* masa){
     system ("cls");
     printBordersWith2(45, 10, 4);

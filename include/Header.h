@@ -3,16 +3,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
-//#include <conio.h>
-#include <io.h>
-#include <fcntl.h>
-#include <windows.h>
+#include <string.h> // stccmp kullanmak icin
+//#include <math.h> // Dosya okuma icindi >> Artik bu kullanilmiyor.
+//#include <conio.h> // Ekran ciktilari icin >> Artik bu kullanilmiyor. mingw icinde yok.
+#include <io.h> // Ekran ciktilari icin 
+#include <fcntl.h>  // Ekran ciktilari icin
+#include <windows.h> // Ekran ciktilari ve Sleep icin
 
 #endif // HEADED_H
 
-
+// Birden fazla define ve include eklenmesini engellemek icin
 #ifndef KİSİ_H
 #define KİSİ_H
 #include "Kisi.h"

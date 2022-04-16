@@ -1,5 +1,7 @@
 #include "Header.h"
 
+// PlayerArray elemanini baslatir.
+// playerArray icin alt methodlari gosterir.
 PlayerArray PlayerInitilize()
 {
     PlayerArray this;
@@ -15,6 +17,7 @@ PlayerArray PlayerInitilize()
     return this;
 }
 
+// PlayerArray icin bir eleman ekleme islemi.
 void PlayerInsert(PlayerArray self, char name[128], double health, double changeRate, int diceNumber){
     PlayerArray newPlayer = (PlayerArray)malloc(sizeof(struct PLAYER_ARRAY));
     strcpy(newPlayer->name, name);
@@ -38,6 +41,7 @@ void PlayerInsert(PlayerArray self, char name[128], double health, double change
     }
 }
 
+// PalyerArray icin elemanlari yazdiran method.
 void PlayerPrintAll(PlayerArray self){
     PlayerArray temp = self->next;
     while(temp != NULL){
@@ -46,6 +50,7 @@ void PlayerPrintAll(PlayerArray self){
     }
 }
 
+// PlayerArray icin eleman silme islemi.
 void PlayerDelete(PlayerArray self, char name[128]){
     PlayerArray temp = self->next;
     while(temp != NULL){
@@ -63,6 +68,7 @@ void PlayerDelete(PlayerArray self, char name[128]){
     }
 }
 
+// PlayerArray icindeki en yuksek oyuncu bulma.
 PlayerArray PlayerHighest(PlayerArray self){
     PlayerArray temp = self->next;
     PlayerArray highest = self->next;
