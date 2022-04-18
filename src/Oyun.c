@@ -64,7 +64,7 @@ void PlayTheGame(PlayerArray player, DiceArray dice, double *masa, boolean debug
                 }
                 // Oyuncu kazanma islemi.
                 else if(Player->diceNumber == Dice->diceNumber){
-                    *masa -= (Player->changeRate * Player->health *10);
+                    *masa -= (Player->changeRate * Player->health *9);
                     Player->health += ((Player->changeRate * Player->health) * 9); 
                     // (x - x*DegismeOrani) + x*DegismeOrani*10 == x + x*degismeOrani*9
                 }
