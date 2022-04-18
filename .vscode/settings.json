@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.java": "java",
-        "windows.h": "c",
-        "fcntl.h": "c"
-    }
-}
