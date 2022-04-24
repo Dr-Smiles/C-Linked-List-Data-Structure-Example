@@ -45,7 +45,7 @@ void PlayerInsert(PlayerArray self, char name[128], double health, double change
 void PlayerPrintAll(PlayerArray self){
     PlayerArray temp = self->next;
     while(temp != NULL){
-        printf("%s | %f | %f | %d\n", temp->name, temp->health, temp->changeRate, temp->diceNumber);
+        wprintf(L"%s | %f | %f | %d\n", temp->name, temp->health, temp->changeRate, temp->diceNumber);
         temp = temp->next;
     }
 }
