@@ -1,4 +1,7 @@
 #include "Header.h"
+#include "Kisi.h"
+#include "Oyun.h"
+#include "ConsolePrinter.h"
 
 //DiceArray elamaninin baslatilmasi.
 //diceArray icin alt methodlari gosterir.
@@ -36,7 +39,7 @@ void DiceInsert(DiceArray self, int diceNumber){
 void DicePrintAll(DiceArray self){
     DiceArray temp = self->next;
     while(temp != NULL){
-        printf("%d\n", temp->diceNumber);
+        wprintf(L"%d\n", temp->diceNumber);
         temp = temp->next;
     }
 }
@@ -49,14 +52,19 @@ void PlayTheGame(PlayerArray player, DiceArray dice, double *masa, boolean debug
     DiceArray Dice = dice->next;
     PlayerArray HighestPlayer; // En yuksek oyuncu.
     int counter = 0;    // Turn sayac.
+    int amountOfPlayers = 1; // Oynayan oyuncu sayisi.
 
-    while (Dice != NULL){
+    while (Dice != NULL && amountOfPlayers != 0){
 
         Player = player->next;
         counter++;
 
+        amountOfPlayers = 0;
+        
         while(Player != NULL){ // Oyuncu varmi kontrolu.
             if (Player->health > 1000.00){ // 1000.00 degerinden kucuk olanlarin oynamasini engeller.
+                amountOfPlayers++;
+                
                 // Oyuncu kaybetme islemi.
                 if(Player->diceNumber != Dice->diceNumber){
                     *masa += (Player->changeRate * Player->health);
@@ -64,14 +72,24 @@ void PlayTheGame(PlayerArray player, DiceArray dice, double *masa, boolean debug
                 }
                 // Oyuncu kazanma islemi.
                 else if(Player->diceNumber == Dice->diceNumber){
-                    *masa -= (Player->changeRate * Player->health *10);
+                    *masa -= (Player->changeRate * Player->health *9);
                     Player->health += ((Player->changeRate * Player->health) * 9); 
                     // (x - x*DegismeOrani) + x*DegismeOrani*10 == x + x*degismeOrani*9
                 }
             }
             Player = Player->next; // Sonraki oyuncuyu al.
         }
+
+        if (amountOfPlayers == 0){
+            // Oyuncu kalmadiysa loop disina gec.
+            // Hic oyuncu kalmadigi icin amount of players
+            // 0 kalir. Dice degerleri bitene kadar devam eder.
+            counter--; //Round icinde oyuncu olmadigi icin sayma!
+            continue;
+        }
+
         HighestPlayer = PlayerHighest(player); // Round sonundaki en yuksek oyuncuyu al.
+
 
         // Debug moduna gore round sonucunu yazdirama.
         if(debugify == 0){
@@ -84,6 +102,10 @@ void PlayTheGame(PlayerArray player, DiceArray dice, double *masa, boolean debug
             wprintf(L" Masa: %.2f\n", *masa);
         }
         Dice = Dice->next; // Sonraki sayiyi al.
+
+        if (Dice == NULL && amountOfPlayers != 0){ // Dice array bos ise.
+            Dice = dice->next; // Dice arrayi baslangic hale getir.
+        }
     }
 
     // Oyun sonunda en yuksek oyuncu ve masa bilgilerini yazdir.

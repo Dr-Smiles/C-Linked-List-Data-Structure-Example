@@ -1,4 +1,7 @@
 #include "Header.h"
+#include "Kisi.h"
+#include "Oyun.h"
+#include "Dosya.h"
 
 int main(int argc, char const *argv[])
 {

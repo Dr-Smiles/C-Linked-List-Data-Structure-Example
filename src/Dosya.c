@@ -1,4 +1,6 @@
 #include "Header.h"
+#include "Kisi.h"
+#include "Oyun.h"
 
 // Kisiler.txt dosyasından okuma işlemi
 // Okunan değerleri playerArray'e atar.

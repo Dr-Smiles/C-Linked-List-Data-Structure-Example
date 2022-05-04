@@ -1,5 +1,5 @@
 #include "Header.h"
-
+#include "ConsolePrinter.h"
 // Konsol imlecinin konumunu ayarlar.
 void gotoxy(int x, int y)
 {
